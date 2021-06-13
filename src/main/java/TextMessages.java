@@ -25,7 +25,7 @@ public class TextMessages {
             "técnicos humanos e de nossos clientes finais.\n \n" +
             "Especificamente sobre mim: Eu sou um assistente virtual que tem como objetivo te auxiliar no entendimento de " +
             "quais serão os possíveis impostos que serão descontados em sua folha salarial.";
-
+    public static final String DEFAULT_ERROR_MESSAGE = "Desculpe, não entendi o que você disse. Por favor, selecione uma opção do menu.";
 
     public static ReplyKeyboardMarkup getTecladoMenuInicial() {
         String[][] teclado = {

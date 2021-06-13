@@ -4,7 +4,6 @@ import com.pengrad.telegrambot.model.Chat;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.model.request.ReplyKeyboardRemove;
 import com.pengrad.telegrambot.request.SendMessage;
-import com.sun.xml.internal.bind.v2.runtime.output.StAXExStreamWriterOutput;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -17,6 +16,10 @@ public class MeuContadorBot {
         bot = new TelegramBot(Constants.BOT_TOKEN);
         bot.setUpdatesListener(updates -> {
             for (Update update : updates) {
+                if(update.message() == null){
+                    System.out.println("Update sem mensagem - ignorando: " + update.updateId());
+                    continue;
+                }
                 String texto = update.message().text();
                 Chat chat = update.message().chat();
 
@@ -148,7 +151,8 @@ public class MeuContadorBot {
                             bot.execute(new SendMessage(user.getChat().id(), TextMessages.CLOSE_MESSAGE).replyMarkup(new ReplyKeyboardRemove()));
                             users.remove(user);
                         }else{
-
+                            // mensagem padrão
+                            bot.execute(new SendMessage(user.getChat().id(), TextMessages.DEFAULT_ERROR_MESSAGE));
                         }
                         break;
                 }

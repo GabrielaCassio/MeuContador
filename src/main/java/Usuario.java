@@ -3,8 +3,8 @@ import com.pengrad.telegrambot.model.Chat;
 import java.util.ArrayList;
 
 public class Usuario {
-    private static Chat chat;
-    private static int status;
+    private Chat chat;
+    private int status;
     private double wage;
     private double discount;
 
@@ -13,25 +13,26 @@ public class Usuario {
     public static final int  STATUS_WAITING_DISCOUNT = 3;
     public static final int  STATUS_ANSWER_MENU = 7;
 
+
     public Usuario(Chat chat, int status) {
         this.setChat(chat);
         this.setStatus(status);
     }
 
-    public static Chat getChat() {
+    public Chat getChat() {
         return chat;
     }
 
-    public static void setChat(Chat chat) {
-        Usuario.chat = chat;
+    public void setChat(Chat chat) {
+        this.chat = chat;
     }
 
-    public static int getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public static void setStatus(int status) {
-        Usuario.status = status;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public double getWage() {
@@ -57,7 +58,7 @@ public class Usuario {
             }
         }
 
-        System.out.println("Usuário " + chat.id() + " não encontrado. Adicionando como novo usuário");
+        System.out.println("Usuário " + chat.id() + " ("+chat.firstName() + " " + chat.lastName()+") não encontrado. Adicionando como novo usuário");
         Usuario newUser = new Usuario(chat, STATUS_NEW_USER);
         usuarios.add(newUser);
         return newUser;
